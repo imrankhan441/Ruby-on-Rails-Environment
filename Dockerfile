@@ -1,10 +1,10 @@
 FROM python:3.6-slim
-FROM ubuntu:18.04
-
 
 RUN pip install --no-cache --upgrade pip && \
     pip install --no-cache notebook
 
+
+FROM ubuntu:18.04
 
 RUN apt-get update \
  && apt-get install -y \
