@@ -4,7 +4,7 @@ USER root
 
 RUN apt-get update
 
-RUN apt-get install curl
+RUN apt install curl
 
 RUN \curl -sSL https://get.rvm.io | bash -s stable
 
