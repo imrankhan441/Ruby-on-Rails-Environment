@@ -1,62 +1,65 @@
-FROM ubuntu:18.04
+FROM instructure/core:xenial
+MAINTAINER Instructure
 
-# RVM version to install
-ARG RVM_VERSION=stable
-ENV RVM_VERSION=${RVM_VERSION}
+USER root
+RUN apt-get update \
+ && apt-get install -y \
+      autoconf \
+      automake \
+      bison \
+      gawk \
+      sqlite3 \
+      make \
+      imagemagick \
+      libbz2-dev \
+      libcurl4-openssl-dev \
+      libevent-dev \
+      libffi-dev \
+      libgdbm-dev \
+      libglib2.0-dev \
+      libgmp-dev \
+      libjpeg-dev \
+      libmagickcore-dev \
+      libmagickwand-dev \
+      libmysqlclient-dev \
+      libncurses-dev \
+      libpq-dev \
+      libreadline-dev \
+      libsqlite3-dev \
+      libssl-dev \
+      libxml2-dev \
+      libxslt-dev \
+      libyaml-dev \
+      zlib1g-dev \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
-# RMV user to create
-ARG RVM_USER=rvm
-ENV RVM_USER=${RVM_USER}
+RUN mkdir -p /usr/src/app && chown docker:docker /usr/src/app
+
+USER docker
 
 # Install RVM
-RUN apt update \
-    && apt install -y \
-       curl \
-       git \
-       gnupg2 \
-    && rm -rf /var/lib/apt/lists/*
+RUN gpg --keyserver hkp://keys.gnupg.net --recv-keys \
+      409B6B1796C275462A1703113804BB82D39DC0E3 \
+      7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
+ && curl -sSL https://get.rvm.io | bash -s -- --autolibs=read-fail stable \
+ && echo 'bundler' >> /home/docker/.rvm/gemsets/global.gems \
+ && echo 'rvm_silence_path_mismatch_check_flag=1' >> ~/.rvmrc
 
-# Install + verify RVM with gpg (https://rvm.io/rvm/security)
-RUN gpg2 --quiet --no-tty --logger-fd 1 --keyserver hkp://keys.gnupg.net \
-         --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 \
-                     7D2BAF1CF37B13E2069D6956105BD0E739499BDB \
-    && echo 409B6B1796C275462A1703113804BB82D39DC0E3:6: | \
-       gpg2 --quiet --no-tty --logger-fd 1 --import-ownertrust \
-    && curl -sSO https://raw.githubusercontent.com/rvm/rvm/${RVM_VERSION}/binscripts/rvm-installer \
-    && curl -sSO https://raw.githubusercontent.com/rvm/rvm/${RVM_VERSION}/binscripts/rvm-installer.asc \
-    && gpg2 --quiet --no-tty --logger-fd 1 --verify rvm-installer.asc \
-    && bash rvm-installer ${RVM_VERSION} \
-    && rm rvm-installer rvm-installer.asc \
-    && echo "bundler" >> /usr/local/rvm/gemsets/global.gems \
-    && echo "rvm_silence_path_mismatch_check_flag=1" >> /etc/rvmrc \
-    && echo "install: --no-document" > /etc/gemrc
+SHELL ["/bin/bash", "-lc"]
+CMD ["/bin/bash", "-l"]
 
-# Workaround tty check, see https://github.com/hashicorp/vagrant/issues/1673#issuecomment-26650102
-RUN sed -i 's/^mesg n/tty -s \&\& mesg n/g' /root/.profile
+# Install Rubies
+RUN rvm install 2.3.8 \
+ && rvm alias create 2.3 ruby-2.3.8 \
+ && rvm install 2.4.9 \
+ && rvm alias create 2.4 ruby-2.4.9 \
+ && rvm install 2.5.7 \
+ && rvm alias create 2.5 ruby-2.5.7 \
+ && rvm install 2.6.5 \
+ && rvm alias create 2.6 ruby-2.6.5 \
+ && rvm install 2.7.0 \
+ && rvm alias create 2.7 ruby-2.7.0 \
+ && rvm use --default 2.7.0
 
-# Switch to a bash login shell to allow simple 'rvm' in RUN commands
-SHELL ["/bin/bash", "-l", "-c"]
-
-# Optional: child images can change to this user, or add 'rvm' group to other user
-# see https://docs.docker.com/develop/develop-images/dockerfile_best-practices/#user
-RUN useradd -m --no-log-init -r -g rvm ${RVM_USER}
-
-# Optional: child images can set Ruby versions to install (whitespace-separated)
-ONBUILD ARG RVM_RUBY_VERSIONS
-
-# Optional: child images can set default Ruby version (default is first version)
-ONBUILD ARG RVM_RUBY_DEFAULT
-
-# Child image runs this only if RVM_RUBY_VERSIONS is defined as ARG before the FROM line
-ONBUILD RUN if [ ! -z "${RVM_RUBY_VERSIONS}" ]; then \
-              VERSIONS="$(echo "${RVM_RUBY_VERSIONS}" | sed -E -e 's/\s+/\n/g')" \
-              && for v in ${VERSIONS}; do \
-                   echo "== docker-rvm: Installing ${v} ==" \
-                   && rvm install ${v}; \
-                 done \
-              && DEFAULT=${RVM_RUBY_DEFAULT:-$(echo "${VERSIONS}" | head -n1)} \
-              && echo "== docker-rvm: Setting default ${DEFAULT} ==" \
-              && rvm use --default "${DEFAULT}"; \
-            fi \
-            && rvm cleanup all \
-            && rm -rf /var/lib/apt/lists/*
+WORKDIR /usr/src/app
