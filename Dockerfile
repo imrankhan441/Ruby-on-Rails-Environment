@@ -1,2 +1,3 @@
-RUN apt install curl
+USER root
+RUN apt-get update
 
