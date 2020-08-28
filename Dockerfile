@@ -1,3 +1,4 @@
+FROM python:3.6-slim
 FROM ubuntu:18.04
 
 USER root
