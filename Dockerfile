@@ -33,6 +33,6 @@ USER ${USER}
 #       libzmq3-dev \
 #       libczmq-dev
 
-# RUN gem install ffi-rzmq
-# RUN gem install iruby --pre
-# RUN iruby register --force
+RUN gem install ffi-rzmq
+RUN gem install iruby --pre
+RUN iruby register --force
