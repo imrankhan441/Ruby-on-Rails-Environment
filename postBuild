@@ -1,3 +1,0 @@
-gem install ffi-rzmq
-gem install iruby --pre
-iruby register --force
