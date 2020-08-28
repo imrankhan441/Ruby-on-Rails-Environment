@@ -7,7 +7,7 @@ RUN apt-get update \
 
 RUN \curl -sSL https://get.rvm.io | bash -s stable
 
-#RUN source /usr/local/rvm/scripts/rvm
+RUN source .local/rvm/scripts/rvm
 
 RUN rvm requirements
 
