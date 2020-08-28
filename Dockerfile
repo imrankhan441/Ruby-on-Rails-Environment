@@ -1,3 +1,19 @@
+FROM ubuntu:18.04
+
+RUN apt-get update \
+ && apt-get install -y \
+      libtool \
+      libffi-dev \
+      ruby \
+      ruby-dev \
+      make \
+      libzmq3-dev \
+      libczmq-dev
+
+
+
+
+
 FROM python:3.6-slim
 
 RUN pip install --no-cache --upgrade pip && \
@@ -19,19 +35,6 @@ WORKDIR ${HOME}
 USER ${USER}
 
 
-
-
-#FROM ubuntu:18.04
-
-# RUN apt-get update \
-#  && apt-get install -y \
-#       libtool \
-#       libffi-dev \
-#       ruby \
-#       ruby-dev \
-#       make \
-#       libzmq3-dev \
-#       libczmq-dev
 
 RUN gem install ffi-rzmq
 RUN gem install iruby --pre
