@@ -14,4 +14,7 @@ rbenv global 2.3.1
 
 
 gem install bundler
+gem install ffi-rzmq
+gem install iruby --pre
+iruby register --force
 rbenv rehash
