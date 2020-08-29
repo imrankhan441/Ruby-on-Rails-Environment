@@ -8,7 +8,8 @@ RUN gem install \
         sqlite3 \
         webpacker
 
-ARG app_name = "test"
+app_name = "test"
+ARG app_name
 
 rails app_name
 #rails _5.2.4_ app_name
