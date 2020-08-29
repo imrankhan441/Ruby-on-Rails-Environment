@@ -7,6 +7,7 @@ RUN gem install \
         rails:5.2.4 \
         concurrent-ruby \
         i18n \
+        minitest \
         sqlite3 \
         webpacker
 
