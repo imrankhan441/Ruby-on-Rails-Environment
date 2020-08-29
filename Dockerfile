@@ -8,6 +8,7 @@ RUN gem install \
         concurrent-ruby \
         i18n \
         minitest \
+        tzinfo \
         sqlite3 \
         webpacker
 
