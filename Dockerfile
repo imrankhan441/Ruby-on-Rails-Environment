@@ -2,6 +2,15 @@ FROM rubydata/minimal-notebook:e1a22a2
 ENV TAG=e1a22a2
 RUN rm -r ./work
 
+USER root
+
+# Pre-requisites
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+            curl \
+            yarn
+
+
 RUN gem install \
         rails \
         rails:5.2.4 \
