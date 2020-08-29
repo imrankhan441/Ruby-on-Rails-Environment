@@ -139,15 +139,6 @@ RUN gem install \
         pry-doc \
         pycall \
         rbplotly \
-        red-arrow \
-        red-arrow-nmatrix \
-        red-chainer \
-        red-datasets \
-        red-datasets-arrow \
-        red-datasets-daru \
-        red-gandiva \
-        red-parquet \
-        red-plasma \
         rumale \
         sqlite3 \
     \
