@@ -9,6 +9,21 @@ RUN gem install \
         webpacker
         
 
+# create user with a home directory
+ARG NB_USER
+ARG NB_UID
+ENV USER ${NB_USER}
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+WORKDIR ${HOME}
+USER ${USER}
+
+
+
 # ARG BASE_IMAGE_TAG=7a0c7325e470
 # FROM jupyter/datascience-notebook:$BASE_IMAGE_TAG
 
