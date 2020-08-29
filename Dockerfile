@@ -8,26 +8,26 @@ RUN gem install \
         sqlite3 \
         webpacker
 
-ENV APP_NAME = "test"
+#ENV APP_NAME = "test"
 #ARG APP_NAME
 
-RUN rails new test_app
+#RUN rails new test_app
 #RUN rails new _5.2.4_ ${APP_NAME}
 
 
-# USER root
+USER root
 
-# # create user with a home directory
-# ARG NB_USER
-# ARG NB_UID
-# ENV USER ${NB_USER}
-# ENV HOME /home/${NB_USER}
+# create user with a home directory
+ARG NB_USER
+ARG NB_UID
+ENV USER ${NB_USER}
+ENV HOME /home/${NB_USER}
 
-# RUN adduser --disabled-password \
-#     --gecos "Default user" \
-#     --uid ${NB_UID} \
-#     ${NB_USER}
-WORKDIR ${HOME}/test_app/
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+WORKDIR ${HOME}
 # USER ${USER}
 
 
