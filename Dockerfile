@@ -9,7 +9,7 @@ RUN gem install \
         i18n \
         minitest \
         tzinfo \
-        tzinfo:1.2.7
+        tzinfo:1.2.7 \
         sqlite3 \
         webpacker
 
