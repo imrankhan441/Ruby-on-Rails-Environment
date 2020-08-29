@@ -42,6 +42,9 @@ RUN gem install \
         turbolinks-source \
         turbolinks \
         web-console \
+        webdrivers \
+        webpacker \
+        webpacker:4.3.0
         sqlite3 \
         webpacker
 
