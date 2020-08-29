@@ -15,18 +15,18 @@ RUN gem install \
 #RUN rails new _5.2.4_ ${APP_NAME}
 
 
-USER root
+# USER root
 
-# create user with a home directory
-ARG NB_USER
-ARG NB_UID
-ENV USER ${NB_USER}
-ENV HOME /home/${NB_USER}
+# # create user with a home directory
+# ARG NB_USER
+# ARG NB_UID
+# ENV USER ${NB_USER}
+# ENV HOME /home/${NB_USER}
 
-RUN adduser --disabled-password \
-    --gecos "Default user" \
-    --uid ${NB_UID} \
-   ${NB_USER}
+# RUN adduser --disabled-password \
+#     --gecos "Default user" \
+#     --uid ${NB_UID} \
+#    ${NB_USER}
 
 WORKDIR ${HOME}
 # USER ${USER}
