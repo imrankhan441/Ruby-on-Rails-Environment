@@ -5,6 +5,7 @@ RUN rm -r ./work
 RUN gem install \
         rails \
         rails:5.2.4 \
+        concurrent-ruby \
         sqlite3 \
         webpacker
 
