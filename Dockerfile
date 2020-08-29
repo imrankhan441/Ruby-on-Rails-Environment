@@ -9,7 +9,7 @@ RUN apt-get update \
       python3-setuptools \
       python3-dev
 
-RUN \curl -sSL https://get.rvm.io | bash -s stable
+#RUN \curl -sSL https://get.rvm.io | bash -s stable
 
 # install the notebook package
 RUN pip install --no-cache --upgrade pip && \
