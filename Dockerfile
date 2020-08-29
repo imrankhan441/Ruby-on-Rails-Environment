@@ -6,6 +6,7 @@ RUN gem install \
         rails \
         rails:5.2.4 \
         concurrent-ruby \
+        i18n \
         sqlite3 \
         webpacker
 
