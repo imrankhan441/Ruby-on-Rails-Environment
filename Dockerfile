@@ -11,7 +11,7 @@ RUN gem install \
 ENV APP_NAME = "test"
 #ARG APP_NAME
 
-RUN rails new ${APP_NAME}
+RUN rails new test
 #RUN rails new _5.2.4_ ${APP_NAME}
 
 
@@ -27,7 +27,7 @@ RUN rails new ${APP_NAME}
 #     --gecos "Default user" \
 #     --uid ${NB_UID} \
 #     ${NB_USER}
-WORKDIR ${HOME}/${APP_NAME}
+WORKDIR ${HOME}/test
 # USER ${USER}
 
 
