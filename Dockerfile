@@ -8,6 +8,7 @@ RUN gem install \
         sqlite3 \
         webpacker
         
+USER root
 
 # create user with a home directory
 ARG NB_USER
