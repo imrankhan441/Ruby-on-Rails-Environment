@@ -1,6 +1,6 @@
 FROM rubydata/minimal-notebook:e1a22a2
 ENV TAG=e1a22a2
-#RUN rm -rf /work
+RUN rm -r ./work
 
 # ARG BASE_IMAGE_TAG=7a0c7325e470
 # FROM jupyter/datascience-notebook:$BASE_IMAGE_TAG
