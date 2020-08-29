@@ -4,13 +4,16 @@ USER root
 RUN apt-get update \
  && apt-get install -y \
       curl \
-      python3.7
+      python3.7 \
+      python3-pip \
+      python3-setuptools \
+      python3-dev
 
 RUN \curl -sSL https://get.rvm.io | bash -s stable
 
 # install the notebook package
-RUN pip3 install --no-cache --upgrade pip && \
-    pip3 install --no-cache notebook
+RUN pip install --no-cache --upgrade pip && \
+    pip install --no-cache notebook
 
 # create user with a home directory
 ARG NB_USER
