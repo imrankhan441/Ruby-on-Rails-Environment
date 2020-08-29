@@ -2,6 +2,13 @@ FROM rubydata/minimal-notebook:e1a22a2
 ENV TAG=e1a22a2
 RUN rm -r ./work
 
+RUN gem install \
+        rails \
+        rails -v 5.2.4.3 \
+        sqlite3 \
+        webpacker
+        
+
 # ARG BASE_IMAGE_TAG=7a0c7325e470
 # FROM jupyter/datascience-notebook:$BASE_IMAGE_TAG
 
