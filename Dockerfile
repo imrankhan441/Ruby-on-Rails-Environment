@@ -8,11 +8,11 @@ RUN gem install \
         sqlite3 \
         webpacker
 
-app_name = "test"
-ARG app_name
+APP_NAME = "test"
+ARG APP_NAME
 
-rails app_name
-#rails _5.2.4_ app_name
+rails ${APP_NAME}
+#rails _5.2.4_ ${APP_NAME}
 
 
 # USER root
@@ -27,7 +27,7 @@ rails app_name
 #     --gecos "Default user" \
 #     --uid ${NB_UID} \
 #     ${NB_USER}
-WORKDIR ${HOME}/${app_name}
+WORKDIR ${HOME}/${APP_NAME}
 # USER ${USER}
 
 
