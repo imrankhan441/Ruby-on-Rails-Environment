@@ -11,8 +11,8 @@ RUN gem install \
 ENV APP_NAME = "test"
 #ARG APP_NAME
 
-RUN rails ${APP_NAME}
-#RUN rails _5.2.4_ ${APP_NAME}
+RUN rails new ${APP_NAME}
+#RUN rails new _5.2.4_ ${APP_NAME}
 
 
 # USER root
