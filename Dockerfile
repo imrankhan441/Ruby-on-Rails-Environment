@@ -12,8 +12,8 @@ RUN apt-get update \
 #RUN \curl -sSL https://get.rvm.io | bash -s stable
 
 # install the notebook package
-RUN pip install --no-cache --upgrade pip && \
-    pip install --no-cache notebook
+RUN pip3 install --no-cache --upgrade pip3 && \
+    pip3 install --no-cache notebook
 
 # create user with a home directory
 ARG NB_USER
