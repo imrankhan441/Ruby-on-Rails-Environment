@@ -140,7 +140,6 @@ RUN gem install \
         pycall \
         rbplotly \
         red-arrow \
-        red-arrow-numo-narray \
         red-arrow-nmatrix \
         red-chainer \
         red-datasets \
