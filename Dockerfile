@@ -4,7 +4,7 @@ RUN rm -r ./work
 
 RUN gem install \
         rails \
-        'rails -v 5.2.4' \
+        rails -v 5.2.4 \
         sqlite3 \
         webpacker
         
