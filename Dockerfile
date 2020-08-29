@@ -10,7 +10,7 @@ RUN gem install \
 
 ARG app_name = "test"
 
-#rails app_name
+rails app_name
 #rails _5.2.4_ app_name
 
 
