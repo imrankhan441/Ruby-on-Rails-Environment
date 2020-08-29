@@ -8,7 +8,7 @@ RUN gem install \
         sqlite3 \
         webpacker
 
-APP_NAME = "test"
+ENV APP_NAME = "test"
 #ARG APP_NAME
 
 rails ${APP_NAME}
