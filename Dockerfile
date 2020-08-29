@@ -44,7 +44,7 @@ RUN gem install \
         web-console \
         webdrivers \
         webpacker \
-        webpacker:4.3.0
+        webpacker:4.3.0 \
         sqlite3 \
         webpacker
 
