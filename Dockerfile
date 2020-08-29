@@ -12,6 +12,36 @@ RUN gem install \
         tzinfo:1.2.7 \
         zeitwerk \
         nokogiri \
+        loofah \
+        mimemagic \
+        public_suffix \
+        bindex \
+        msgpack \
+        bootsnap \
+        byebug \
+        regexp_parser \
+        xpath \
+        capybara \
+        childprocess \
+        childprocess:3.0.0 \
+        ffi \
+        jbuilder \
+        rb-fsevent \
+        rb-inotify \
+        listen \
+        method_source \
+        puma \
+        rubyzip \
+        sassc \
+        tilt \
+        sassc-rails \
+        sass-rails \
+        selenium-webdriver \
+        spring \
+        spring-watcher-listen \
+        turbolinks-source \
+        turbolinks \
+        web-console \
         sqlite3 \
         webpacker
 
