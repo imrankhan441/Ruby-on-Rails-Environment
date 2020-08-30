@@ -4,6 +4,8 @@ RUN rm -r ./work
 
 USER root
 
+RUN apt remove cmdtest
+
 # Pre-requisites
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
